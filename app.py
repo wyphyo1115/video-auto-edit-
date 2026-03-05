@@ -1,5 +1,5 @@
 import streamlit as st
-from moviepy.editor import *
+from moviepy import *  # moviepy.editor မဟုတ်တော့ပါ
 import tempfile
 import os
 
@@ -31,14 +31,14 @@ if st.button("Create Video"):
                     
                     # Create Image Clip
                     clip = (ImageClip(img_path)
-                            .resize(height=720)
-                            .set_duration(img_duration)
-                            .crossfadein(0.5))
+                            .with_duration(img_duration)  # set_duration မဟုတ်တော့ပါ
+                            .resized(height=720))         # resize မဟုတ်တော့ပါ
+                            # .crossfadein(0.5)) <- v2 မှာ crossfade နည်းနည်းကွာလို့ ခဏဖြုတ်ထားမယ်
                     clips.append(clip)
 
                 # Concatenate
                 final_video = concatenate_videoclips(clips, method="compose")
-                final_video = final_video.set_audio(audio_clip)
+                final_video = final_video.with_audio(audio_clip) # set_audio မဟုတ်တော့ပါ
                 
                 # Write file
                 output_file = "output.mp4"
