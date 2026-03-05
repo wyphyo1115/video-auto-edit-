@@ -1,2 +1,4 @@
-ffmpeg
-imagemagick
+streamlit
+moviepy
+imageio-ffmpeg
+numpy<2
